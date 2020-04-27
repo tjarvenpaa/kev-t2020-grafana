@@ -42,10 +42,17 @@ Asennetaan viimeisin docker ympäristö ubuntulle
   
 ## Testaus:
 
+```bash
 sudo docker run hello-world  
+```
+
 Testataan perustoimivuus ajamalla root käyttäjänä hello-world container  
+
+```bash
 sudo usermod -aG docker $USER  
-newgroup  
+newgrp  
+```
+
 Lisätään käyttäjä docker ryhmään ja otetaan ryhmäjäsenyys käyttöön ilman uudelleen kirjatumista  
 
 ## Grafana asennus:  

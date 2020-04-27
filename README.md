@@ -7,8 +7,9 @@ Toiminta
 Tämä tarvitsee toimiakseen docker alustan sekä docker-compose työkalun. Tarvitaan myös toimiva reverse proxy rakenne apache2 ympäristöön
 
 Docker asennus:
-$ sudo apt-get remove docker docker-engine docker.io containerd runc
-$ sudo apt-get update
+
+$ sudo apt-get remove docker docker-engine docker.io containerd runc 
+$ sudo apt-get update 
 $ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -22,5 +23,6 @@ $ newgroup
 
 Grafana asennus:
 $ sudo mkdir /opt/grafana
-$ sudo git clone 
-$ docker-compose -d up 
+$ sudo git clone https://github.com/tjarvenpaa/kev-t2020-grafana.git /opt/grafana/
+$ sudo chown -R student:student /opt/grafana
+$ docker-compose -d up -f /opt/grafana/docker-compose.yml --project-directory /opt/grafana/

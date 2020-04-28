@@ -84,6 +84,28 @@ otetaan docker-compose ympäristössä uusi container käyttöön.
 
 ## Apache2 lisäpalikat:
 
+Apache tarvitsee toimiakseen konfiguraatio muutoksen, jolla kerrotaan mitä halutaan proxytä ja millä tavalla. Tämän onnistumiseksi apache2 tarvitseen muutaman moduulin aktivoiduksi.
+
+```bash
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+```
+
+Näiden moduulien aktivoinnin jälkeen, tarvitaan vielä konfiguraatio, jolla osoitetaan grafanaan:
+
+```apacheconf
+      RewriteEngine on
+     <Location "/grafana">
+            ProxyPass http://localhost:3000
+     </Location>
+     ProxyPassReverse /grafana http://localhost:3000
+´´´
+
+Tämän jälkeen apache prosessin uudelleen käynnistys ja testaus:
+
+```bash
+sudo systemctl restart apache2
+```
 
 ## Nginx asennus reverse proxy asetuksilla
 
